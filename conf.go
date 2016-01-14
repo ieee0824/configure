@@ -19,6 +19,7 @@ func (c *Conf) Get(k string) interface{} {
 
 func NewConf(path string) *Conf {
 	var c Conf
+	c.c = map[string]interface{}{}
 	bin, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil
