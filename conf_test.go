@@ -1,11 +1,19 @@
 package configure
 
-import "testing"
+import (
+	"io/ioutil"
+	"testing"
+)
 
 func TestNewConf(t *testing.T) {
 	c := NewConf("./test/conf.json")
 
 	if c == nil {
-		t.Fatal("can not read configure")
+		fileNames := []string{}
+		files, _ := ioutil.ReadDir("./")
+		for _, f := range files {
+			fileNames = append(fileNames, f.Name())
+		}
+		t.Fatal(fileNames)
 	}
 }
