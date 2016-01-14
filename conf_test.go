@@ -10,7 +10,7 @@ func TestNewConf(t *testing.T) {
 
 	if c == nil {
 		fileNames := []string{}
-		files, _ := ioutil.ReadDir("./")
+		files, _ := ioutil.ReadDir("./test")
 		for _, f := range files {
 			fileNames = append(fileNames, f.Name())
 		}
