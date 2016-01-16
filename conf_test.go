@@ -6,15 +6,27 @@ import (
 )
 
 func TestNewConf(t *testing.T) {
-	c := NewConf("./test/conf.json")
 
-	if c == nil {
+	if NewConf("./test/conf.json") == nil {
 		fileNames := []string{}
 		files, _ := ioutil.ReadDir("./test")
 		for _, f := range files {
 			fileNames = append(fileNames, f.Name())
 		}
+		t.Log("can not allocated.")
 		t.Fatal(fileNames)
+	}
+	if NewConf("") != nil {
+		t.Log("file name validate test.")
+		t.Fatal("invalid error determination.")
+	}
+	if NewConf("foo.json") != nil {
+		t.Log("file read test.")
+		t.Fatal("illegal read.")
+	}
+	if NewConf("./test/error.json") != nil {
+		t.Log("json decode test")
+		t.Fatal("illegal decode.")
 	}
 }
 

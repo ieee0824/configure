@@ -18,6 +18,9 @@ func (c *Conf) Get(k string) interface{} {
 }
 
 func NewConf(filePath string) *Conf {
+	if filePath == "" {
+		return nil
+	}
 	c := Conf{map[string]interface{}{}}
 	bin, err := ioutil.ReadFile(filePath)
 	if err != nil {
