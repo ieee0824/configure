@@ -1,1 +1,8 @@
-{"hoge":"hage"}
+{
+  "hoge":"hage",
+  "include":[
+    "conf3.json",
+    "./conf3.json",
+    "../test/conf3.json"
+  ]
+}
