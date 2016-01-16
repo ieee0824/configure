@@ -130,5 +130,4 @@ func TestInclude(t *testing.T) {
 		t.Log(abnormal.Get("loc"))
 		t.Fail()
 	}
-	t.Fatal(normal)
 }
