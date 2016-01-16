@@ -17,28 +17,15 @@ func (c *Conf) Get(k string) interface{} {
 	return c.c[k]
 }
 
-func (c *Conf) Write(path string) error {
-	j, err := json.Marshal(c.c)
-
+func NewConf(filePath string) *Conf {
+	c := Conf{map[string]interface{}{}}
+	bin, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		return err
+		return nil
 	}
-	return ioutil.WriteFile(path, j, 0644)
-}
-
-func (c *Conf) Read(path string) {
-	bin, err := ioutil.ReadFile(path)
+	err = json.Unmarshal(bin, &c)
 	if err != nil {
-		c.c = nil
-		return
+		return nil
 	}
-	err = json.Unmarshal(bin, &c.c)
-	if err != nil {
-		c.c = nil
-		return
-	}
-}
-
-func NewConf() *Conf {
-	return &Conf{map[string]interface{}{}}
+	return &c
 }
