@@ -1,3 +1,6 @@
 {
-  "year":1989
+  "year":1989,
+  "include":[
+    "conf4.json"
+  ]
 }

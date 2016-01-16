@@ -2,6 +2,7 @@ package configure
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
@@ -9,7 +10,8 @@ import (
 
 // Conf to hold the configure that you read.
 type Conf struct {
-	c map[string]interface{}
+	loopDetector map[string]interface{}
+	c            map[string]interface{}
 }
 
 // Set additional configuration items.
@@ -69,6 +71,12 @@ func (c *Conf) include(parentConfPath string) {
 				continue
 			}
 		}
+		var err error
+		c.loopDetector, err = loopDetection(includeFileName, c.loopDetector)
+		if err != nil {
+			return
+		}
+
 		childConf := NewConf(includeFileName)
 		if childConf == nil {
 			continue
@@ -80,9 +88,26 @@ func (c *Conf) include(parentConfPath string) {
 	}
 }
 
+func loopDetection(path string, loopDetector map[string]interface{}) (map[string]interface{}, error) {
+	path, err := filepath.Abs(path)
+	if err != nil {
+		return nil, err
+	}
+	if loopDetector[path] != nil {
+		return loopDetector, errors.New("loop")
+	}
+	loopDetector[path] = true
+	return loopDetector, nil
+}
+
 // NewConf to get the configuration item from json.
 func NewConf(filePath string) *Conf {
+	loop := map[string]interface{}{}
 	var conf map[string]interface{}
+	loop, err := loopDetection(filePath, loop)
+	if err != nil {
+		return nil
+	}
 	bin, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		return nil
@@ -91,9 +116,9 @@ func NewConf(filePath string) *Conf {
 	if err != nil {
 		return nil
 	}
-
 	c := Conf{
-		c: conf,
+		c:            conf,
+		loopDetector: loop,
 	}
 
 	c.include(filePath)
