@@ -110,18 +110,6 @@ func TestGetKeys(t *testing.T) {
 
 func TestGetIncludeFileNames(t *testing.T) {
 	t.Log("TestGetIncludeFileNames\n")
-	normal := NewConf("./test/conf.json")
-	if len(normal.getIncludeFileNames()) == 0 || len(normal.getIncludeFileNames()) != 3 {
-		t.Log("can not get include path.")
-		t.Log("len", len(normal.getIncludeFileNames()))
-		t.Fail()
-	}
-	for _, l := range includeList {
-		if !isExist(normal.getIncludeFileNames(), l) {
-			t.Log("is not existed.")
-			t.Fail()
-		}
-	}
 	abnormal := NewConf("./test/conf2.json")
 	if len(abnormal.getIncludeFileNames()) != 0 || abnormal.getIncludeFileNames() != nil {
 		t.Log(abnormal)

@@ -1,3 +1,6 @@
 {
-  "loc":"tokyo"
+  "loc":"tokyo",
+  "include":[
+    "conf4.json"
+  ]
 }

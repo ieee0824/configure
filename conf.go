@@ -91,7 +91,13 @@ func NewConf(filePath string) *Conf {
 	if err != nil {
 		return nil
 	}
-	return &Conf{
+
+	c := Conf{
 		c: conf,
 	}
+
+	c.include(filePath)
+
+	delete(c.c, "include")
+	return &c
 }
