@@ -131,3 +131,18 @@ func TestInclude(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestSetDefaultVal(t *testing.T) {
+	t.Log("SetDefaultVal test.")
+	conf := NewConf("./test/conf.json")
+	conf.SetDefaultVal("hoge", "hoge")
+
+	if conf.Get("hoge").(string) != "hage" {
+		t.Fatal(conf.Get("hoge"))
+	}
+
+	conf.SetDefaultVal("foo", "bar")
+	if conf.Get("foo").(string) != "bar" {
+		t.Fatal(conf.Get("foo"))
+	}
+}
