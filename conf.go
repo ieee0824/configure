@@ -19,6 +19,12 @@ func (c *Conf) Set(k string, v interface{}) {
 	c.c[k] = v
 }
 
+func (c *Conf) SetDefaultVal(k string, v interface{}) {
+	if c.c[k] == nil {
+		c.c[k] = v
+	}
+}
+
 // Get is to get the configuration item.
 func (c *Conf) Get(k string) interface{} {
 	return c.c[k]
