@@ -2,6 +2,7 @@
   "loc":"tokyo",
   "include":[
     "conf4.json",
-    "conf3.json"
+    "conf3.json",
+    "$HOME/$HOGEHOGE/${HOME}/////\///\\conf5\\\\0\\0\r\n\t.json"
   ]
 }
