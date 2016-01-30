@@ -106,6 +106,12 @@ func TestGetKeys(t *testing.T) {
 		t.Log("length is not zero.")
 		t.Fail()
 	}
+	t.Log("nil test")
+	nilConf := NewConf("./test/conf.json")
+	nilConf.c = nil
+	if nilConf.GetKeys() != nil {
+		t.Fatal(len(nilConf.GetKeys()))
+	}
 }
 
 func TestGetIncludeFileNames(t *testing.T) {
