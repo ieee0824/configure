@@ -1,8 +1,8 @@
 # configure
 ![CircleCi](https://circleci.com/gh/ieee0824/configure.svg?style=shield)
 [![Build Status](https://travis-ci.org/ieee0824/configure.svg?branch=master)](https://travis-ci.org/ieee0824/configure)
-[![GoDoc](https://godoc.org/github.com/ieee0824/configure?status.svg)](https://godoc.org/github.com/ieee0824/configure)  
-[![Coverage Status](https://coveralls.io/repos/github/ieee0824/configure/badge.svg?branch=travis)](https://coveralls.io/github/ieee0824/configure?branch=travis)
+[![GoDoc](https://godoc.org/github.com/ieee0824/configure?status.svg)](https://godoc.org/github.com/ieee0824/configure)
+[![Coverage Status](https://coveralls.io/repos/github/ieee0824/configure/badge.svg?branch=travis)](https://coveralls.io/github/ieee0824/configure?branch=travis)  
 golang confiugre library
 
 # JSON Exsample
